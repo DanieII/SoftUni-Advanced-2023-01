@@ -7,4 +7,4 @@
 | Labs | Exercises|
 | ---- | --------- |
 | [lists as stacks and queues](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/lists_as_stacks_and_queues) | [lists as stacks and queues exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/lists_as_stacks_and_queues_exercise) |
-|[multidimensional lists](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/multidimensional_lists) |
+|[multidimensional lists](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/multidimensional_lists) | [multidimensional lists exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/multidimensional_lists_exercise) 
