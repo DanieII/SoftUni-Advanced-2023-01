@@ -1,0 +1,1 @@
+print(*[" ".join(i.split()) for i in input().split("|")[::-1] if i.split()])
