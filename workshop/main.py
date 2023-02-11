@@ -21,8 +21,16 @@ def create_matrix(row_size=6, column_size=7):
                 row_size, column_size = ask_for_size()
             break
 
-    for i in range(row_size):
-        matrix.append([0] * column_size)
+    matrix = [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0]
+    ]
+    # for i in range(row_size):
+    #     matrix.append([0] * column_size)
     return matrix
 
 
@@ -66,9 +74,47 @@ def check_for_win(matrix, position, player):
                     rest.append(matrix[j][position_col - 1])
                 return all([x == player for x in rest]) if len(rest) >= 3 else False
 
-    # TODO: implement diagonals logic
+    def check_diagonals():
 
-    if any((check_horizontal(), check_vertical())):
+        # def get_starting_row():
+        #     if matrix[position_row]
+        def check_up_left():
+            # не взима правилния стартов ред винаги
+            starting_row = max((position_row - 3, 0))
+            range_of_numbers = (position_row - starting_row) + 1
+            values = []
+            for i in range(range_of_numbers):
+                values.append(matrix[starting_row + i][len(matrix[0]) - (position_col - 2) - (-i + 3)])
+            values_without_zeros = [x for x in values if x]
+            return len(set(values_without_zeros)) == 1 and len(values_without_zeros) == 4
+
+        def check_up_right():
+            starting_row = max((position_row - 2, 0))
+            range_of_numbers = position_row - starting_row
+            values = [matrix[starting_row + i][-(i + 1)] for i in range(range_of_numbers + 1)]
+            values_without_zeros = [x for x in values if x]
+            return len(set(values_without_zeros)) == 1 and len(values_without_zeros) == 4
+
+        def check_down_left():
+            if position_col - 2 in range(len(matrix[0])):
+                values = [matrix[position_row + i][-(len(matrix[0]) - (position_col - i) + 2)] for i in
+                          range(len(matrix) - position_row + 1)]
+                values_without_zeros = [x for x in values if x]
+                return len(set(values_without_zeros)) == 1 and len(values_without_zeros) == 3
+            return False
+
+        def check_down_right():
+            starting_row = position_row + 1
+            if position_col - 2 in range(len(matrix[0])):
+                values = [matrix[starting_row + i][-(len(matrix[0]) - (position_col + i))] for i in
+                          range(len(matrix) - starting_row - 1)]
+                values_without_zeros = [x for x in values if x]
+                return len(set(values_without_zeros)) == 1 and len(values_without_zeros) == 3
+            return False
+
+        return any((check_up_left(), check_up_right()))
+
+    if any((check_horizontal(), check_vertical(), check_diagonals())):
         return True
     return False
 
