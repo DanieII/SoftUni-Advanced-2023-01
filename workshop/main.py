@@ -21,16 +21,8 @@ def create_matrix(row_size=6, column_size=7):
                 row_size, column_size = ask_for_size()
             break
 
-    matrix = [
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [1, 0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0]
-    ]
-    # for i in range(row_size):
-    #     matrix.append([0] * column_size)
+    for i in range(row_size):
+        matrix.append([0] * column_size)
     return matrix
 
 
@@ -76,43 +68,88 @@ def check_for_win(matrix, position, player):
 
     def check_diagonals():
 
-        # def get_starting_row():
-        #     if matrix[position_row]
-        def check_up_left():
-            # не взима правилния стартов ред винаги
-            starting_row = max((position_row - 3, 0))
-            range_of_numbers = (position_row - starting_row) + 1
+        def check_combination(lst):
+            lst_without_zeros = [x for x in lst if x]
+            if len(lst_without_zeros) >= 3:
+                first_four = lst_without_zeros[:3]
+                return len(set(first_four)) == 1
+            return False
+
+        # When boolean is True the function will return a boolean indicating whether the direction is winning
+        # That's because the full line function needs a string from each direction
+        def up_left(boolean=True):
             values = []
-            for i in range(range_of_numbers):
-                values.append(matrix[starting_row + i][len(matrix[0]) - (position_col - 2) - (-i + 3)])
-            values_without_zeros = [x for x in values if x]
-            return len(set(values_without_zeros)) == 1 and len(values_without_zeros) == 4
+            for i in range(position_row - 1, -1, -1):
+                column = position_col - 1 - (-i + position_row)
+                if column < 0:
+                    break
 
-        def check_up_right():
-            starting_row = max((position_row - 2, 0))
-            range_of_numbers = position_row - starting_row
-            values = [matrix[starting_row + i][-(i + 1)] for i in range(range_of_numbers + 1)]
-            values_without_zeros = [x for x in values if x]
-            return len(set(values_without_zeros)) == 1 and len(values_without_zeros) == 4
+                try:
+                    values.append(matrix[i][column])
+                except IndexError:
+                    break
 
-        def check_down_left():
-            if position_col - 2 in range(len(matrix[0])):
-                values = [matrix[position_row + i][-(len(matrix[0]) - (position_col - i) + 2)] for i in
-                          range(len(matrix) - position_row + 1)]
-                values_without_zeros = [x for x in values if x]
-                return len(set(values_without_zeros)) == 1 and len(values_without_zeros) == 3
+            if boolean:
+                return check_combination(values)
+            return "".join([str(x) for x in values])
+
+        def up_right(boolean=True):
+            values = []
+            for i in range(position_row - 1, -1, -1):
+                column = position_col - 1 + (-i + position_row)
+                if column < 0:
+                    break
+
+                try:
+                    values.append(matrix[i][column])
+                except IndexError:
+                    break
+
+            if boolean:
+                return check_combination(values)
+            return "".join([str(x) for x in values])
+
+        def down_left(boolean=True):
+            values = []
+            for i in range(position_row + 1, len(matrix)):
+                column = position_col - 1 + (-i + position_row)
+                if column < 0:
+                    break
+
+                try:
+                    values.append(matrix[i][column])
+                except IndexError:
+                    break
+
+            if boolean:
+                return check_combination(values)
+            return "".join([str(x) for x in values])
+
+        def down_right(boolean=True):
+            values = []
+            for i in range(position_row + 1, len(matrix)):
+                column = position_col - 1 - (-i + position_row)
+                if column < 0:
+                    break
+
+                try:
+                    values.append(matrix[i][column])
+                except IndexError:
+                    break
+
+            if boolean:
+                return check_combination(values)
+            return "".join([str(x) for x in values])
+
+        def check_full_line(first_part, second_part):
+            full_line = first_part[::-1] + second_part
+            if "111" in full_line or "222" in full_line:
+                return True
             return False
 
-        def check_down_right():
-            starting_row = position_row + 1
-            if position_col - 2 in range(len(matrix[0])):
-                values = [matrix[starting_row + i][-(len(matrix[0]) - (position_col + i))] for i in
-                          range(len(matrix) - starting_row - 1)]
-                values_without_zeros = [x for x in values if x]
-                return len(set(values_without_zeros)) == 1 and len(values_without_zeros) == 3
-            return False
-
-        return any((check_up_left(), check_up_right()))
+        return any((check_horizontal(), check_vertical(), up_left(), up_right(), down_left(), down_right(),
+                    check_full_line(up_left(False), down_right(False)),
+                    check_full_line(up_right(False), down_left(False))))
 
     if any((check_horizontal(), check_vertical(), check_diagonals())):
         return True
