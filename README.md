@@ -17,4 +17,4 @@
 | Labs | Exercises|
 | ---- | --------- |
 | [first steps in oop](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/first_steps_in_oop) | [first steps in oop exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/first_steps_in_oop_exercise) |
-| [classes and objects](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/classes_and_objects) |
+| [classes and objects](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/classes_and_objects) | [classes and objects exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/classes_and_objects_exercise) |
