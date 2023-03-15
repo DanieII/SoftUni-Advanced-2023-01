@@ -9,7 +9,7 @@ class Book:
 class Format(ABC):
     @abstractmethod
     def format(self, book: Book) -> str:
-        return book.content
+        pass
 
 
 class Formatter(Format):

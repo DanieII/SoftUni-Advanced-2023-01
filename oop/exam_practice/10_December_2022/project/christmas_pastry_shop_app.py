@@ -1,7 +1,7 @@
-from booths.open_booth import OpenBooth
-from booths.private_booth import PrivateBooth
-from delicacies.gingerbread import Gingerbread
-from delicacies.stolen import Stolen
+from project.booths.open_booth import OpenBooth
+from project.booths.private_booth import PrivateBooth
+from project.delicacies.gingerbread import Gingerbread
+from project.delicacies.stolen import Stolen
 
 
 class ChristmasPastryShopApp:
@@ -21,7 +21,7 @@ class ChristmasPastryShopApp:
         elif type_delicacy == "Stolen":
             delicacy = Stolen(name, price)
         else:
-            Exception(f"{type_delicacy} is not on our delicacy menu!")
+            raise Exception(f"{type_delicacy} is not on our delicacy menu!")
 
         self.delicacies.append(delicacy)
         return f"Added delicacy {name} - {type_delicacy} to the pastry shop."
@@ -36,7 +36,7 @@ class ChristmasPastryShopApp:
         elif type_booth == "Private Booth":
             booth = PrivateBooth(booth_number, capacity)
         else:
-            Exception(f"{type_booth} is not a valid booth!")
+            raise Exception(f"{type_booth} is not a valid booth!")
 
         self.booths.append(booth)
         return f"Added booth number {booth_number} in the pastry shop."
@@ -45,7 +45,7 @@ class ChristmasPastryShopApp:
         try:
             needed_booth = [x for x in self.booths if not x.is_reserved and x.capacity >= number_of_people][0]
         except IndexError:
-            Exception(f"No available booth for {number_of_people} people!")
+            raise Exception(f"No available booth for {number_of_people} people!")
 
         needed_booth.reserve(number_of_people)
         return f"Booth {needed_booth.booth_number} has been reserved for {number_of_people} people."
@@ -54,24 +54,24 @@ class ChristmasPastryShopApp:
         try:
             booth = [x for x in self.booths if x.booth_number == booth_number][0]
         except IndexError:
-            return f"Could not find booth {booth_number}!"
+            raise Exception(f"Could not find booth {booth_number}!")
 
         try:
             delicacy = [x for x in self.delicacies if x.name == delicacy_name][0]
         except IndexError:
-            return f"No {delicacy_name} in the pastry shop!"
+            raise Exception(f"No {delicacy_name} in the pastry shop!")
 
-        booth.deliacy_orders.append(delicacy)
+        booth.delicacy_orders.append(delicacy)
         return f"Booth {booth_number} ordered {delicacy_name}."
 
     def leave_booth(self, booth_number: int):
         booth = [x for x in self.booths if x.booth_number == booth_number][0]
-        delicacies = sum(x.price for x in booth.deliacy_orders)
+        delicacies = sum(x.price for x in booth.delicacy_orders)
 
         bill = delicacies + booth.price_for_reservation
         self.income += bill
 
-        booth.deliacy_orders.clear()
+        booth.delicacy_orders.clear()
         booth.is_reserved = False
         booth.price_for_reservation = 0
 
