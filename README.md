@@ -19,6 +19,8 @@
 | [first steps in oop](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/first_steps_in_oop) | [first steps in oop exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/first_steps_in_oop_exercise) |
 | [classes and objects](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/classes_and_objects) | [classes and objects exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/classes_and_objects_exercise) |
 | [inheritance](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/inheritance) | [inheritance exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop) |
-| [encapsulation](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/encapsulation) | [encapsulation exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/encapsulation_exercise)|
+| [encapsulation](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/encapsulation) | [encapsulation exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/encapsulation_exercise) |
 | [static and class methods](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/static_and_class_methods) | [static and class methods exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/static_and_class_methods_exercise) |
-| 
+| [polymorphism and abstraction](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/polymorphism_and_abstraction) | [polymorphism and abstraction exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/polymorphism_and_abstraction_exercise) |
+| [solid](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/solid) | [solid exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/solid_exercise) |
+| [iterators and generators](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/iterators_and_generators)
