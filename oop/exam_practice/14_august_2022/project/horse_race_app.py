@@ -45,7 +45,7 @@ class HorseRaceApp:
 
     def add_horse_to_jockey(self, jockey_name: str, horse_type: str):
         jockey: Jockey = self.__get_object_from_attribute("name", jockey_name, self.jockeys)
-        horse = [x for x in self.horses if x.__class__.__name__ == horse_type and not x.is_taken]
+        horse = [x for x in reversed(self.horses) if x.__class__.__name__ == horse_type and not x.is_taken]
 
         if not jockey:
             raise Exception(f"Jockey {jockey_name} could not be found!")

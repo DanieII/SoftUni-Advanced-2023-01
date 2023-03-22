@@ -39,6 +39,7 @@ class FoodOrdersApp:
             for v in self.available_meals:
                 if isinstance(meal, v):
                     self.menu.append(meal)
+                    break
 
     def show_menu(self):
         self.check_menu()
@@ -88,8 +89,8 @@ class FoodOrdersApp:
 
         client.bill += bill
 
-        meal_names = ", ".join([x.name for x in ordered_meals.keys()])
-        return f"Client {client_phone_number} successfully ordered {meal_names} for {bill:.2f}lv."
+        meal_names = ", ".join([x.name for x in client.shopping_cart])
+        return f"Client {client_phone_number} successfully ordered {meal_names} for {client.bill:.2f}lv."
 
     def cancel_order(self, client_phone_number: str):
         client = self.find_object_from_attribute("phone_number", client_phone_number, self.clients_list)

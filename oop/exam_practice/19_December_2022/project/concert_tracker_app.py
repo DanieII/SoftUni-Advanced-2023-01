@@ -11,7 +11,10 @@ class ConcertTrackerApp:
         self.bands = []
         self.musicians = []
         self.concerts = []
-        self.available_musicians = {
+
+    @property
+    def available_musicians(self):
+        return {
             "Guitarist": Guitarist,
             "Drummer": Drummer,
             "Singer": Singer
@@ -37,7 +40,7 @@ class ConcertTrackerApp:
         return True
 
     def __check_band_for_needed_skills(self, genre, band: Band):
-        valid = True
+        valid = False
         drummers = [x for x in band.members if x.__class__.__name__ == "Drummer"]
         singers = [x for x in band.members if x.__class__.__name__ == "Singer"]
         guitarists = [x for x in band.members if x.__class__.__name__ == "Guitarist"]
@@ -58,7 +61,7 @@ class ConcertTrackerApp:
             raise Exception(f"The {band.name} band is not ready to play at the concert!")
 
     def create_musician(self, musician_type: str, name: str, age: int):
-        if musician_type not in self.available_musicians.keys():
+        if musician_type not in self.available_musicians:
             raise ValueError("Invalid musician type!")
         if self.__get_object_from_attribute("name", name, self.musicians):
             raise Exception(f"{name} is already a musician!")
@@ -71,16 +74,14 @@ class ConcertTrackerApp:
         if self.__get_object_from_attribute("name", name, self.bands):
             raise Exception(f"{name} band is already created!")
 
-        band = Band(name)
-        self.bands.append(band)
+        self.bands.append(Band(name))
         return f"{name} was created."
 
     def create_concert(self, genre: str, audience: int, ticket_price: float, expenses: float, place: str):
         if self.__get_object_from_attribute("place", place, self.concerts):
             raise Exception(f"{place} is already registered for {genre} concert!")
 
-        concert = Concert(genre, audience, ticket_price, expenses, place)
-        self.concerts.append(concert)
+        self.concerts.append(Concert(genre, audience, ticket_price, expenses, place))
         return f"{genre} concert in {place} was added."
 
     def add_musician_to_band(self, musician_name: str, band_name: str):
