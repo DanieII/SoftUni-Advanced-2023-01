@@ -23,4 +23,5 @@
 | [static and class methods](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/static_and_class_methods) | [static and class methods exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/static_and_class_methods_exercise) |
 | [polymorphism and abstraction](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/polymorphism_and_abstraction) | [polymorphism and abstraction exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/polymorphism_and_abstraction_exercise) |
 | [solid](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/solid) | [solid exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/solid_exercise) |
-| [iterators and generators](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/iterators_and_generators)
+| [iterators and generators](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/iterators_and_generators) | [iterators and generators exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/iterators_and_generators_exercise) |
+| [decorators](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/decorators)
