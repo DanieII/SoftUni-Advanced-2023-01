@@ -78,8 +78,9 @@ class ConcertTrackerApp:
         return f"{name} was created."
 
     def create_concert(self, genre: str, audience: int, ticket_price: float, expenses: float, place: str):
-        if self.__get_object_from_attribute("place", place, self.concerts):
-            raise Exception(f"{place} is already registered for {genre} concert!")
+        concert = self.__get_object_from_attribute("place", place, self.concerts)
+        if concert:
+            raise Exception(f"{place} is already registered for {concert.genre} concert!")
 
         self.concerts.append(Concert(genre, audience, ticket_price, expenses, place))
         return f"{genre} concert in {place} was added."
