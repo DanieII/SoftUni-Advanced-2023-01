@@ -16,7 +16,7 @@ class MovieApp:
 
     @staticmethod
     def check_if_user_owns_the_movie(user, movie):
-        if user != movie.owner:
+        if user.username != movie.owner.username:
             raise Exception(f"{user.username} is not the owner of the movie {movie.title}!")
 
     def check_if_movie_is_uploaded(self, movie):
@@ -69,15 +69,11 @@ class MovieApp:
     def like_movie(self, username: str, movie: Movie):
         user = self.__get_object_from_attribute("username", username, self.users_collection)
 
-        if user == movie.owner:
+        if user.username == movie.owner.username:
             raise Exception(f"{username} is the owner of the movie {movie.title}!")
-        # if self.__get_object_from_attribute("title", movie.title, user.movies_owned):
-        #     raise Exception(f"{username} is the owner of the movie {movie.title}!")
 
         if movie in user.movies_liked:
             raise Exception(f"{username} already liked the movie {movie.title}!")
-        # if self.__get_object_from_attribute("title", movie.title, user.movies_liked):
-        #     raise Exception(f"{username} already liked the movie {movie.title}!")
 
         movie.likes += 1
         user.movies_liked.append(movie)
