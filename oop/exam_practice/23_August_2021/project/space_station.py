@@ -7,6 +7,11 @@ from project.planet.planet_repository import PlanetRepository
 
 
 class SpaceStation:
+    AVAILABLE_ASTRONAUTS = {
+        "Biologist": Biologist,
+        "Geodesist": Geodesist,
+        "Meteorologist": Meteorologist,
+    }
 
     def __init__(self):
         self.planet_repository = PlanetRepository()
@@ -22,32 +27,25 @@ class SpaceStation:
 
     @staticmethod
     def start_mission(planet: Planet, astronauts_sent):
-        while True:
-            if not planet.items:
-                return True
-            if not astronauts_sent:
-                return False
+        for astronaut in astronauts_sent:
+            while planet.items:
+                astronaut.backpack.append(planet.items.pop())
+                astronaut.breathe()
+                if astronaut.oxygen <= 0:
+                    break
 
-            current_astronaut = astronauts_sent.pop(0)
-
-            while current_astronaut.oxygen > 0 and planet.items:
-                planet.items.pop()
-                current_astronaut.breathe()
+        if not planet.items:
+            return True
+        return False
 
     def add_astronaut(self, astronaut_type: str, name: str):
         if self.__get_object_from_attribute("name", name, self.astronaut_repository.astronauts):
             return f"{name} is already added."
 
-        if astronaut_type not in ["Biologist", "Geodesist", "Meteorologist"]:
+        if astronaut_type not in self.AVAILABLE_ASTRONAUTS:
             raise Exception("Astronaut type is not valid!")
 
-        if astronaut_type == "Biologist":
-            astronaut = Biologist(name)
-        elif astronaut_type == "Geodesist":
-            astronaut = Geodesist(name)
-        elif astronaut_type == "Meteorologist":
-            astronaut = Meteorologist(name)
-
+        astronaut = self.AVAILABLE_ASTRONAUTS[astronaut_type](name)
         self.astronaut_repository.astronauts.append(astronaut)
 
         return f"Successfully added {astronaut_type}: {name}."
@@ -86,7 +84,7 @@ class SpaceStation:
         astronauts_with_more_than_30_units = list(filter(lambda x: x.oxygen > 30, self.astronaut_repository.astronauts))
 
         if not astronauts_with_more_than_30_units:
-            f"You need at least one astronaut to explore the planet!"
+            raise Exception(f"You need at least one astronaut to explore the planet!")
 
         astronauts_sorted_in_descending_order_by_units = sorted(astronauts_with_more_than_30_units,
                                                                 key=lambda x: -x.oxygen)
@@ -97,13 +95,13 @@ class SpaceStation:
             if len(astronauts) < 5:
                 astronauts.append(astronaut)
 
-        number_of_astronauts = len(astronauts)
-
         completed = self.start_mission(planet, astronauts)
+
+        number_of_astronauts_that_participated = len([x for x in astronauts if x.backpack])
 
         if completed:
             self.successful_missions += 1
-            return f"Planet: {planet_name} was explored. {number_of_astronauts} astronauts participated in collecting items."
+            return f"Planet: {planet_name} was explored. {number_of_astronauts_that_participated} astronauts participated in collecting items."
 
         self.not_completed_missions += 1
         return "Mission is not completed."

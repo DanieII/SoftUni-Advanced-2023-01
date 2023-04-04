@@ -70,22 +70,21 @@ class Controller:
         else:
             raise Exception(f"Car {car_type} could not be found!")
 
-        if found_car:
-            if driver.car:
-                old_car = driver.car
-                old_car.is_taken = False
+        if driver.car:
+            old_car = driver.car
+            old_car.is_taken = False
 
-                old_model = old_car.model
-
-                driver.car = found_car
-                found_car.is_taken = True
-
-                return f"Driver {driver.name} changed his car from {old_model} to {found_car.model}."
+            old_model = old_car.model
 
             driver.car = found_car
             found_car.is_taken = True
 
-            return f"Driver {driver_name} chose the car {found_car.model}."
+            return f"Driver {driver.name} changed his car from {old_model} to {found_car.model}."
+
+        driver.car = found_car
+        found_car.is_taken = True
+
+        return f"Driver {driver_name} chose the car {found_car.model}."
 
     def add_driver_to_race(self, race_name: str, driver_name: str):
         race = self.__get_object_from_attribute("name", race_name, self.races)
@@ -112,7 +111,7 @@ class Controller:
         race = self.__get_object_from_attribute("name", race_name, self.races)
 
         if not race:
-            f"Race {race_name} could not be found!"
+            raise Exception(f"Race {race_name} could not be found!")
 
         if len(race.drivers) < 3:
             raise Exception(f"Race {race_name} cannot start with less than 3 participants!")

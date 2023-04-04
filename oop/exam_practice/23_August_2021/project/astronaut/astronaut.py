@@ -22,13 +22,13 @@ class Astronaut(ABC):
 
     @property
     @abstractmethod
-    def additional_oxygen_needed(self):
+    def oxygen_needed(self):
         pass
 
     def breathe(self):
         current_needed_for_breath = self.ASTRONAUT_OXYGEN_DECREASE_PER_BREATH
-        if self.additional_oxygen_needed:
-            current_needed_for_breath += self.additional_oxygen_needed
+        if self.oxygen_needed:
+            current_needed_for_breath = self.oxygen_needed
 
         self.oxygen -= current_needed_for_breath
 

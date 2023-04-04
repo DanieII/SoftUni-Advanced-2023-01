@@ -8,5 +8,5 @@ class Geodesist(Astronaut):
         super().__init__(name, self.INITIAL_OXYGEN)
 
     @property
-    def additional_oxygen_needed(self):
+    def oxygen_needed(self):
         return None
