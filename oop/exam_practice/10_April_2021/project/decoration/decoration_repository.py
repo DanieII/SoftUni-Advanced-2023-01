@@ -10,10 +10,13 @@ class DecorationRepository:
         self.decorations.append(decoration)
 
     def remove(self, decoration: BaseDecoration):
-        self.decorations.remove(decoration)
+        if decoration in self.decorations:
+            self.decorations.remove(decoration)
+            return True
+        return False
 
     def find_by_type(self, decoration_type: str):
         for decoration in self.decorations:
-            if type(decoration) == decoration_type:
+            if decoration.__class__.__name__ == decoration_type:
                 return decoration
-        return None
+        return "None"
