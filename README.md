@@ -25,4 +25,4 @@
 | [solid](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/solid) | [solid exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/solid_exercise) |
 | [iterators and generators](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/iterators_and_generators) | [iterators and generators exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/iterators_and_generators_exercise) |
 | [decorators](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/decorators) | [decorators exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/decorators_exercise) |
-| [testing](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/testing) |
+| [testing](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/testing) | [testing exercise](https://github.com/DanieII/SoftUni-Advanced-2023-01/tree/main/oop/testing_exercise)
